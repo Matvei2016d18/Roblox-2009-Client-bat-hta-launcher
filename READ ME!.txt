@@ -1,0 +1,19 @@
+How to play?
+
+Run the file '1 start MAP.bat' or
+open 'RobloxSite.hta' . If you're
+using '1 start MAP.bat', enter the
+name of the map. If you're using
+'RobloxSite.hta', simply click the
+Play This button next to the map.
+This will open the Roblox Studio. Paste
+the command that's already copied
+to your clipboard  (press Ctrl + V in
+the Command field) and press
+Enter. The player will appear, and
+you can start playing.
+
+Old roblox place 2006 / 2007
+
+https://temportal.neocities.org/
+

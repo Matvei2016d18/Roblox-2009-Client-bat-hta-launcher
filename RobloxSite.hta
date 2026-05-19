@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+
+<title>Free Games at ROBLOX.com</title>
+
+<hta:application
+    applicationname="Free Games at ROBLOX.com"
+    border="thin"
+    caption="yes"
+    showintaskbar="yes"
+    singleinstance="yes"
+    scroll="yes"
+	icon="RobloxSiteContent\Roblox.ico"
+/>
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    font-family:Verdana;
+    font-size:11px;
+
+    background:#6EA4D9;
+}
+
+/* MAIN CONTAINER */
+
+#Container{
+    width:960px;
+    margin:auto;
+}
+
+
+/* HEADER */
+
+#Header{
+    margin-top:10px;
+}
+
+#Banner{
+    height:72px;
+
+    background:#5F95C9;
+    border:1px solid #3B6E99;
+
+    position:relative;
+}
+
+/* LOGIN */
+
+#LoginBox{
+    position:absolute;
+    top:10px;
+    right:10px;
+
+    color:white;
+}
+
+#LoginBox a{
+    color:white;
+    text-decoration:none;
+    margin-left:10px;
+    font-weight:bold;
+}
+
+/* LOGO */
+
+#Logo{
+    position:absolute;
+    left:15px;
+    top:10px;
+}
+
+/* NAVIGATION */
+
+.Navigation{
+    background:#A7C7E7;
+
+    border-left:1px solid #7BA2C8;
+    border-right:1px solid #7BA2C8;
+    border-bottom:1px solid #7BA2C8;
+
+    padding:8px;
+    text-align:center;
+}
+
+.Navigation a{
+    color:#1D3C6A;
+    text-decoration:none;
+    font-weight:bold;
+    margin:0 8px;
+}
+
+/* YEAR BUTTONS */
+
+#YearTabs{
+    margin-top:10px;
+    margin-bottom:10px;
+
+    background:#DCEAF7;
+    border:1px solid #7BA2C8;
+
+    padding:8px;
+    text-align:center;
+}
+
+.yearBtn{
+    display:inline-block;
+
+    background:#6FA8DC;
+    color:white;
+
+    border:1px solid #3D6AA2;
+
+    padding:5px 14px;
+
+    margin-right:5px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+}
+
+.yearBtn:hover{
+    background:#4E86BE;
+}
+
+/* BODY */
+
+#Body{
+    margin-top:10px;
+}
+
+/* LEFT */
+
+#LeftColumn{
+    width:180px;
+    float:left;
+}
+
+.SidePanel{
+    background:#DCEAF7;
+    border:1px solid #7BA2C8;
+    margin-bottom:10px;
+}
+
+.SideTitle{
+    background:#5F95C9;
+    color:white;
+    font-weight:bold;
+    padding:5px;
+}
+
+.SideContent{
+    padding:8px;
+}
+
+.SideContent div{
+    margin-bottom:5px;
+}
+
+/* MAIN */
+
+#MainColumn{
+    width:760px;
+    float:right;
+}
+
+/* GAME BOX */
+
+.GameBox{
+    background:#DCEAF7;
+
+    border:1px solid #7BA2C8;
+
+    margin-bottom:12px;
+
+    padding:10px;
+}
+
+.GameTitle{
+    font-size:15px;
+    font-weight:bold;
+    color:#1B365D;
+
+    margin-bottom:6px;
+}
+
+.GameStats{
+    margin-bottom:6px;
+}
+
+.Likes{
+    background-color:#FFD700;
+    color:#1B365D;
+    padding:2px 6px;
+    border-radius:3px;
+    font-weight:bold;
+    display:inline-block;
+    font-size:10px;
+}
+
+.GameDesc{
+    margin-bottom:10px;
+    color:#444;
+}
+
+/* PLAY BUTTON */
+
+.PlayButton{
+    cursor:pointer;
+}
+
+/* FOOTER */
+
+#Footer{
+    clear:both;
+
+    margin-top:20px;
+
+    text-align:center;
+
+    color:white;
+
+    padding:10px;
+}
+
+/* NEWS */
+
+#News{
+    background:#DCEAF7;
+    border:1px solid #7BA2C8;
+    margin-top:10px;
+}
+
+#NewsTitle{
+    background:#5F95C9;
+    color:white;
+    padding:5px;
+    font-weight:bold;
+}
+
+#NewsContent{
+    padding:8px;
+}
+
+</style>
+
+<script language="VBScript">
+
+Dim currentYear
+
+' CUSTOM DESCRIPTIONS FOR MAPS STARTS
+
+Function GetGameDescription(fileName)
+    Dim descriptions
+    Set descriptions = CreateObject("Scripting.Dictionary")
+    
+    descriptions.Add "2006 - Crossroads.rbxl", "Note: This version is from late 2006 and the exact date may not be accurate. The map may also be slightly inaccurate as it is derived from a modified copy of Crossroads"
+    descriptions.Add "2006 - Lava Rush.rbxl", "Note: This is a modified version of Lava Rush from Novetus so it can work properly on the original client. Some code may be inaccurate."
+    descriptions.Add "2006 - Rocket-Arena.rbxl", "rockets, jetboots, and blowing up bridges. Out-maneuver your foes using your jetboots, cut off their escape by nuking the bridges, and rain doom down upon them using a rapid-fire rocket launcher. But don't fall in the lava - ouch!"
+    descriptions.Add "2006 - Santas Winter Stronghold.rbxl", "Deep in the arctic wastes lies Santa's Workshop, where his elves work to make toys for children 364 days a year. Well, the elves have had enough! They are revolting! Play as an elf and collect as many presents as you can find. Play as Santa and use your special powers to hunt down those elves and teach them a lesson before they ruin Christmas for everyone! Who will prevail?"
+    descriptions.Add "2007 - HappyHomeInRobloxia.rbxl", "A nice peaceful starting place with a house and some bricks to build with."
+    descriptions.Add "2007 - Haunted Mansion.rbxl", "There is an abandoned house on a cliff that some say is haunted. And it is. You should know, because the ghost who haunts this house ... is you! During stormy weather, passersby often think to stop at the house for shelter. Use your eerie powers to frighten them and run them out of your home!"
+    descriptions.Add "2007 - Rocket Car Rally.rbxl", "Rockets attached to cars. Speed is dangerous. Winning is everything."
+    
+    If descriptions.Exists(fileName) Then
+        GetGameDescription = descriptions.Item(fileName)
+    Else
+        GetGameDescription = "Classic ROBLOX place file. Can play and build!"
+    End If
+End Function
+
+' CUSTOM DESCRIPTIONS FOR MAPS END
+
+' RANDOM LIKES FUNCTION START
+
+Function GetRandomLikes(position, totalGames)
+    Dim ratio
+    If totalGames > 0 Then
+        ratio = position / totalGames
+    Else
+        ratio = 0
+    End If
+    
+    If ratio < 0.33 Then
+        GetRandomLikes = Int((1000 - 700 + 1) * Rnd + 700)
+    ElseIf ratio < 0.66 Then
+        GetRandomLikes = Int((700 - 400 + 1) * Rnd + 400)
+    Else
+        GetRandomLikes = Int((400 - 100 + 1) * Rnd + 100)
+    End If
+End Function
+
+' RANDOM LIKES FUNCTION END
+
+Sub Window_OnLoad()
+    Randomize
+    currentYear = ""
+    LoadYears
+End Sub
+
+Sub LoadYears()
+    Dim fso
+    Dim folder
+    Dim file
+    Dim years
+    Set years = CreateObject("Scripting.Dictionary")
+    
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    If Not fso.FolderExists("maps to play") Then
+        document.getElementById("YearTabs").innerHTML = "<span style='color:red;'>Folder 'maps to play' not found!</span>"
+        Exit Sub
+    End If
+    
+    Set folder = fso.GetFolder("maps to play")
+    
+    For Each file In folder.Files
+        If LCase(fso.GetExtensionName(file.Name)) = "rbxl" Then
+            Dim year
+            year = Split(file.Name, " - ")(0)
+            If Not years.Exists(year) Then
+                years.Add year, year
+            End If
+        End If
+    Next
+    
+    Dim html
+    html = ""
+    
+    Dim key
+    For Each key In years.Keys
+        html = html & _
+        "<span class='yearBtn' onclick='ShowGames(""" & key & """)'>" & key & "</span>"
+    Next
+    
+    If html = "" Then
+        html = "<span style='color:#666;'>No .rbxl files found in 'maps to play' folder</span>"
+    End If
+    
+    document.getElementById("YearTabs").innerHTML = html
+End Sub
+
+Sub ShowGames(year)
+    currentYear = year
+    
+    Dim fso
+    Dim folder
+    Dim file
+    Dim gameList()
+    Dim gameCount
+    Dim i
+    
+    Dim html
+    html = ""
+    
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    If Not fso.FolderExists("maps to play") Then
+        document.getElementById("GamesArea").innerHTML = "<div class='GameBox'>Folder 'maps to play' not found!</div>"
+        Exit Sub
+    End If
+    
+    Set folder = fso.GetFolder("maps to play")
+    
+    ReDim gameList(100)
+    gameCount = 0
+    
+    For Each file In folder.Files
+        If LCase(fso.GetExtensionName(file.Name)) = "rbxl" Then
+            If Left(file.Name, Len(year)) = year Then
+                gameList(gameCount) = file.Name
+                gameCount = gameCount + 1
+            End If
+        End If
+    Next
+    
+    If gameCount = 0 Then
+        document.getElementById("GamesArea").innerHTML = "<div class='GameBox'>No maps found for " & year & "</div>"
+        Exit Sub
+    End If
+    
+    For i = 0 To gameCount - 1
+        Dim likes
+        Dim gameDesc
+        
+        likes = GetRandomLikes(i, gameCount)
+        gameDesc = GetGameDescription(gameList(i))
+        
+        html = html & _
+        "<div class='GameBox'>" & _
+        "<div class='GameTitle'>" & gameList(i) & "</div>" & _
+        "<div class='GameStats'><span class='Likes'>[+] " & likes & " likes</span></div>" & _
+        "<div class='GameDesc'>" & gameDesc & "</div>" & _
+        "<img class='PlayButton' " & _
+        "src='RobloxSiteContent/PlayThis.png' " & _
+        "onclick='PlayGame(""" & Replace(gameList(i), "'", "\'") & """)'>" & _
+        "</div>"
+    Next
+    
+    document.getElementById("GamesArea").innerHTML = html
+    document.getElementById("NewsContent").innerHTML = "Showing maps from " & year & ". Click PLAY to launch ROBLOX Studio."
+End Sub
+
+Sub PlayGame(map)
+    Dim shell
+    Set shell = CreateObject("WScript.Shell")
+    
+    shell.Run Chr(34) & "1 start MAP.bat" & Chr(34) & " " & Chr(34) & map & Chr(34), 1, False
+End Sub
+
+</script>
+
+</head>
+
+<body>
+
+<div id="Container">
+
+    <!-- HEADER -->
+    <div id="Header">
+
+        <div id="Banner">
+
+            <div id="Logo">
+                <img
+                src="RobloxSiteContent/roblox_logo.png">
+            </div>
+
+            <div id="LoginBox">
+                <a href="#">Login</a>
+                <a href="#">Register</a>
+                <a href="#">Help</a>
+            </div>
+
+        </div>
+
+        <div class="Navigation">
+
+            <a href="#">My ROBLOX</a> |
+            <a href="#">Games</a> |
+            <a href="#">Catalog</a> |
+            <a href="#">People</a> |
+            <a href="#">Forum</a> |
+            <a href="#">News</a>
+
+        </div>
+
+    </div>
+
+    <!-- YEAR BUTTONS -->
+    <div id="YearTabs"></div>
+
+    <!-- BODY -->
+    <div id="Body">
+
+        <!-- LEFT -->
+        <div id="LeftColumn">
+
+            <div class="SidePanel">
+
+                <div class="SideTitle">
+                    ROBLOX News
+                </div>
+
+                <div class="SideContent">
+
+                    <div>Getting it in Gear</div>
+                    <div>Ninja Vs. Gladiator</div>
+                    <div>ROBLOX Trailer Contest</div>
+                    <div>Get to the Choppa!</div>
+
+                </div>
+
+            </div>
+
+            <div class="SidePanel">
+
+                <div class="SideTitle">
+                    Community
+                </div>
+
+                <div class="SideContent">
+
+                    <div>Builders Club</div>
+                    <div>Forum</div>
+                    <div>Catalog</div>
+                    <div>Parents</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- MAIN -->
+        <div id="MainColumn">
+
+            <div id="News">
+
+                <div id="NewsTitle">
+                    Featured Free Games
+                </div>
+
+                <div id="NewsContent">
+                    Select a year above to view maps.
+                </div>
+
+            </div>
+
+            <div id="GamesArea"></div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <div id="Footer">
+
+		ROBLOX, "Online Building Toy", characters, logos, names, and all related indicia are trademarks of ROBLOX Corporation, ©2009. Patents pending.
+		ROBLOX is not sponsored, authorized or endorsed by any producer of plastic building bricks, including The LEGO Group, MEGA Brands, and K'Nex,
+											 and no resemblance to the products of these companies is intended.
+											Use of this site signifies your acceptance of the Terms and Conditions.
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
